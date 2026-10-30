@@ -1,0 +1,48 @@
+
+server:
+  port: 80
+
+spring:
+  application:
+    name: api-gateway
+  cloud:
+    gateway:
+      server:
+        webflux:
+          routes:
+            - id: account-service-route
+              uri: http://account-service:2000
+              predicates:
+                - Path=/api/v1/accounts/**
+              filters:
+                - name: RequestRateLimiter
+                  args:
+                    redis-rate-limiter.replenishRate: 10
+                    redis-rate-limiter.burstCapacity: 20
+            - id: transaction-service-route
+              uri: http://transaction-service:2001
+              predicates:
+                - Path=/api/v1/transactions/**
+              filters:
+                - name: RequestRateLimiter
+                  args:
+                    redis-rate-limiter.replenishRate: 10
+                    redis-rate-limiter.burstCapacity: 20
+            - id: payment-service-route
+              uri: http://payment-service:2003
+              predicates:
+                - Path=/api/v1/payments/**
+              filters:
+                - name: RequestRateLimiter
+                  args:
+                    redis-rate-limiter.replenishRate: 5
+                    redis-rate-limiter.burstCapacity: 10
+  data:
+    redis:
+      host: redis-bank
+      port: 6379
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,gateway

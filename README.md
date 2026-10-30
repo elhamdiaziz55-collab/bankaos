@@ -62,12 +62,12 @@ flowchart LR
 
 | Service | Responsibility | Port |
 |---|---|---|
-| `api-gateway` | Single entry point, request routing | [8080] |
-| `account-service` | [Customer accounts and balances] | [port] |
-| `transaction-service` | [Transaction processing and history] | [port] |
-| `payment-service` | [Payment handling] | [port] |
-| `fraud-detection-service` | [Consumes events, detects suspicious activity] | [port] |
-| `notification-service` | [Consumes events, sends notifications] | [port] |
+| `api-gateway` | Single entry point, request routing | [80] |
+| `account-service` | [Customer accounts and balances] | [2000] |
+| `transaction-service` | [Transaction processing and history] | [2001] |
+| `payment-service` | [Payment handling] | [2003] |
+| `fraud-detection-service` | [Consumes events, detects suspicious activity] | [2002] |
+| `notification-service` | [Consumes events, sends notifications] | [2004] |
 
 ## Tech Stack
 

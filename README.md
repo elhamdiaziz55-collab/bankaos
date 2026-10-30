@@ -137,12 +137,6 @@ All requests go through the gateway.
 ## Testing
 
 ```bash
-# Run tests for one service
-cd transaction-service && ./mvnw test
-```
-
-- [Unit tests with JUnit and Mockito]
-- [Integration tests, Arrange-Act-Assert pattern]
 - [Manual API testing with Postman]
 
 ## Project Structure
